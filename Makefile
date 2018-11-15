@@ -37,14 +37,23 @@ INC_FLAGS = $(INC) $(LIBFT_INC)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	gcc $(INC_FLAGS) $(OBJ) -o $(NAME)
+debug: $(LIBFT) $(FT_PRINTF)
+	gcc -g $(INC_FLAGS) $(LIB_FLAGS) $(SRC) -o $(NAME)
+
+$(NAME): $(LIBFT) $(FT_PRINTF) $(OBJ) 
+	gcc $(INC_FLAGS) $(LIB_FLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR):
 	mkdir obj
 
-$(OBJ): $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(FTLS_HEADER)
-	gcc $(INC_FLAGS) $(LIB_FLAGS) $< -o $@
+$(OBJ): $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(FTLS_HEADER) $(OBJ_DIR)
+	gcc -c $(INC_FLAGS) $< -o $@
+
+$(LIBFT):
+	make -C libft/
+
+$(FT_PRINTF):
+	make -C libft/src/ft_printf/
 
 clean:
 	rm -Rf obj/
