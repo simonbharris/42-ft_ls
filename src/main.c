@@ -26,8 +26,10 @@ int main(int ac, char **av)
 	if(ac == 1)
 	{
 		dirs = opendir("./");
-		dent = readdir(dirs);		
-		ft_printf("%s\n", dent->d_name);
+		while (dent = readdir(dirs))
+		{
+			ft_printf("%s\n", dent->d_name);
+		}
 	}
 	else if (ac > 1)
 	{

@@ -1,0 +1,5 @@
+src/a.out
+*.o
+*a.out
+*.a
+*.dSYM

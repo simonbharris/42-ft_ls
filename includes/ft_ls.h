@@ -53,4 +53,11 @@
 ** * -- uuid/uuid.h
 */
 
+// TODO: Should put htis intop my libft
+typedef struct	s_bucket
+{
+	char c;
+	t_list *lst;
+}				t_bucket;
+
 #endif
