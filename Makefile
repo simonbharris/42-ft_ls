@@ -16,7 +16,9 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 # file names without extentions or directories.
-SRC_RAW = main
+SRC_RAW =	main \
+			ftls_out \
+			opts
 
 SRC = $(SRC_RAW:%=$(SRC_DIR)%.c)
 OBJ = $(SRC_RAW:%=$(OBJ_DIR)%.o)
@@ -38,7 +40,7 @@ INC_FLAGS = $(INC) $(LIBFT_INC)
 all: $(NAME)
 
 debug: $(LIBFT) $(FT_PRINTF)
-	gcc -g $(INC_FLAGS) $(LIB_FLAGS) $(SRC) -o $(NAME)
+	gcc -g $(INC_FLAGS) libft/src/*.c libft/src/ft_printf/src/* $(SRC) -o $(NAME)
 
 $(NAME): $(LIBFT) $(FT_PRINTF) $(OBJ) 
 	gcc $(INC_FLAGS) $(LIB_FLAGS) $(OBJ) -o $(NAME)

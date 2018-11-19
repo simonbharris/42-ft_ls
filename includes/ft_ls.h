@@ -53,11 +53,24 @@
 ** * -- uuid/uuid.h
 */
 
-// TODO: Should put htis intop my libft
-typedef struct	s_bucket
-{
-	char c;
-	t_list *lst;
-}				t_bucket;
+/*
+** Since Norminette doesn't allow lower case lettrs in the define names,
+** I am using double characters int he defines to detone uppercase,
+** single character means lower case.
+*/
+
+# define FTLS_RR		0x01
+# define FTLS_A			0x02
+# define FTLS_L			0x04
+# define FTLS_R			0x08
+# define FTLS_T			0x10
+# define FTLS_MULTIFILE	0x20
+
+# define FT_LS_SUPPORTED_FLAGS "Ralrt"
+
+void putftls(t_list *files, int ls_flags);
+void ftls_put_usage(void);
+int		check_for_opt_flags(char **argv);
+void ft_ls(char **argv);
 
 #endif
