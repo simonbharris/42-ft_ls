@@ -31,7 +31,6 @@ int main(int ac, char **av)
 	int i;
 
 	i = 0;
-	fnames = NULL;
 	if(ac == 1)
 	{
 		ft_ls(NULL, 0);
@@ -43,7 +42,7 @@ int main(int ac, char **av)
 			i++;
 		if (av[i] && av[i + 1])
 			flags |= FTLS_MULTIFILE;
-		ft_ls(av[i], flags);
+		ft_ls(&av[i], flags);
 		// check what arguments are
 		// if flags (pesence of '-' before anything else)
 		// if illegal flag, display usage

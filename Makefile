@@ -18,7 +18,8 @@ OBJ_DIR = obj/
 # file names without extentions or directories.
 SRC_RAW =	main \
 			ftls_out \
-			opts
+			opts \
+			ft_ls
 
 SRC = $(SRC_RAW:%=$(SRC_DIR)%.c)
 OBJ = $(SRC_RAW:%=$(OBJ_DIR)%.o)

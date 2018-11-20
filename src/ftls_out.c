@@ -12,7 +12,7 @@ static void skip_hidden(t_list **files)
 	*files = tmp;
 }
 
-void putftls(t_list *files, int ls_flags)
+void put_files(t_list *files, int ls_flags)
 {
 	t_list *tmp;
 	int i = 0;

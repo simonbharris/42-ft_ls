@@ -68,9 +68,10 @@
 
 # define FT_LS_SUPPORTED_FLAGS "Ralrt"
 
-void putftls(t_list *files, int ls_flags);
+void put_files(t_list *files, int ls_flags);
+void putftls(char *file, int flags);
 void ftls_put_usage(void);
 int		check_for_opt_flags(char **argv);
-void ft_ls(char **argv);
+void ft_ls(char **argv, int flags);
 
 #endif

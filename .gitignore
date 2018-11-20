@@ -3,3 +3,8 @@ src/a.out
 *a.out
 *.a
 *.dSYM
+CMakeLists.txt
+cmake-build-debug
+.vscode
+.idea
+test
