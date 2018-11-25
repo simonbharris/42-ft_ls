@@ -39,18 +39,22 @@ static char get_file_type(int mode)
 static void get_userperms(char perms[10], int mode)
 {
 	ft_bzero(perms, 10);
-	perms[0] = (mode & S_IRUSR) ? 'r' : '-';
-	perms[1] = (mode & S_IWUSR) ? 'w' : '-';
-	perms[2] = (mode & S_IXUSR) ? 'x' : '-';
-	perms[3] = (mode & S_IRGRP) ? 'r' : '-';
-	perms[4] = (mode & S_IWGRP) ? 'w' : '-';
-	perms[5] = (mode & S_IXGRP) ? 'x' : '-';
-	perms[6] = (mode & S_IROTH) ? 'r' : '-';
-	perms[7] = (mode & S_IWOTH) ? 'w' : '-';
-	perms[8] = (mode & S_IXOTH) ? 'x' : '-';
+	perms[0] = (char)((mode & S_IRUSR) ? 'r' : '-');
+	perms[1] = (char)((mode & S_IWUSR) ? 'w' : '-');
+	perms[2] = (char)((mode & S_IXUSR) ? 'x' : '-');
+	perms[3] = (char)((mode & S_IRGRP) ? 'r' : '-');
+	perms[4] = (char)((mode & S_IWGRP) ? 'w' : '-');
+	perms[5] = (char)((mode & S_IXGRP) ? 'x' : '-');
+	perms[6] = (char)((mode & S_IROTH) ? 'r' : '-');
+	perms[7] = (char)((mode & S_IWOTH) ? 'w' : '-');
+	perms[8] = (char)((mode & S_IXOTH) ? 'x' : '-');
 	perms[9] = 0;
 }
 
+// TODO: Need to print symbollic links differently, show file size of the file
+// TODO: (the symlink directly) not the size of the target.
+// TODO: Need to research how to acquire the path of the symlink target as well,
+// TODO: may need ot break this function down into a couple functions.
 void	ft_lsprintlonglist(t_lsfile *file)
 {
 	int mode;
@@ -60,20 +64,25 @@ void	ft_lsprintlonglist(t_lsfile *file)
 	char perms[10];
 
 	time(&timev);
+	ft_bzero(time2, 8);
 	ft_strcpy(time1, ctime(&(file->stats->st_mtimespec.tv_sec)));
+	//ft_printf("%s\n", time1);
 	if (timev - 60 * 60 * 24 * 180 > file->stats->st_mtimespec.tv_sec)
-		ft_strncpy(time2, time1 + 16, 4);
+		ft_strncpy(time2, time1 + 20, 4);
 	else
 		ft_strncpy(time2, time1 + 11, 5);
 	ft_strncpy(time1, time1 + 4, 7);
 	time1[6] = 0;
 	mode = file->stats->st_mode;
 	get_userperms(perms, mode);
-	ft_printf("%c%s  %2d %12s %12s %10d %s %s %s\n", \
+	ft_printf("%c%s  %2d %12s %12s %10d %s %5s %s", \
 			get_file_type(mode), perms, \
 			file->stats->st_nlink, getpwuid(file->stats->st_uid)->pw_name,\
 			getgrgid(file->stats->st_gid)->gr_name,\
-			file->stats->st_size, time1, time2, file->dirent->d_name);
+			file->stats->st_size, time1, time2, file->dirent->d_name);\
+	//if (S_ISLNK(mode))
+	//	ft_printf(" -> %s", file->stats->st_nlink)
+	ft_printf("\n");
 }
 
 int get_block_size(t_list *files)
