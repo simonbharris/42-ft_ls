@@ -12,7 +12,7 @@
 
 #include <ft_ls.h>
 
-void skip_hidden_files(t_list **files)
+void	skip_hidden_files(t_list **files)
 {
 	t_list *tmp;
 

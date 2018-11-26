@@ -21,7 +21,7 @@
 ** IE:
 */
 
-static int mrgsrt_ls_name(void *v1, void *v2)
+static int	mrgsrt_ls_name(void *v1, void *v2)
 {
 	return (ft_strcmp((GET_LS_DNAME(v1)), (GET_LS_DNAME(v2))));
 }
@@ -30,7 +30,7 @@ static int mrgsrt_ls_name(void *v1, void *v2)
 ** Sorts by time modified in seconds > time modified by nanoseconds > file name.
 */
 
-static int mrgsrt_ls_time(void *v1, void *v2)
+static int	mrgsrt_ls_time(void *v1, void *v2)
 {
 	if (GET_LS_TIMEMOD(v1).tv_sec == GET_LS_TIMEMOD(v2).tv_sec)
 	{
@@ -43,7 +43,7 @@ static int mrgsrt_ls_time(void *v1, void *v2)
 		return (GET_LS_TIMEMOD(v1).tv_sec < GET_LS_TIMEMOD(v2).tv_sec);
 }
 
-t_list *ft_ls_sort(t_list *head)
+t_list		*ft_ls_sort(t_list *head)
 {
 	if (g_ftls_flags & FTLS_T)
 		return (ft_merge_sort(head, mrgsrt_ls_time, g_ftls_flags & FTLS_R));
