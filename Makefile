@@ -17,9 +17,16 @@ OBJ_DIR = obj/
 
 # file names without extentions or directories.
 SRC_RAW =	main \
-			ftls_out \
-			opts \
-			ft_ls
+			print_ls \
+			set_opt_flags \
+			ft_ls \
+			ft_ls_file_util \
+			ft_ls_sort \
+			skip_hidden_files \
+			ft_ls_put_longlist \
+			print_basic_long_list \
+			ft_ls_mode_util \
+			ftls_put_dirs
 
 SRC = $(SRC_RAW:%=$(SRC_DIR)%.c)
 OBJ = $(SRC_RAW:%=$(OBJ_DIR)%.o)
@@ -43,13 +50,13 @@ all: $(NAME)
 debug: $(LIBFT) $(FT_PRINTF)
 	gcc -g $(INC_FLAGS) libft/src/*.c libft/src/ft_printf/src/* $(SRC) -o $(NAME)
 
-$(NAME): $(LIBFT) $(FT_PRINTF) $(OBJ) 
+$(NAME): $(LIBFT) $(FT_PRINTF) $(OBJ_DIR) $(OBJ)
 	gcc $(INC_FLAGS) $(LIB_FLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR):
 	mkdir obj
 
-$(OBJ): $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(FTLS_HEADER) $(OBJ_DIR)
+$(OBJ): $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(FTLS_HEADER)
 	gcc -c $(INC_FLAGS) $< -o $@
 
 $(LIBFT):
