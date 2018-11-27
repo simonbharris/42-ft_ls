@@ -11,43 +11,29 @@
 /* ************************************************************************** */
 
 #include <ft_ls.h>
-#include <ft_printf.h>
-
-
 
 /*
-** Displays usage, then exits.
+** if there are no arguments, running ft_ls with NULL
+** will use the current directory.
+** Otherwise, captures flags then passes ft_ls the remaining arguments.
 */
-void ftls_put_usage(void)
-{
-	ft_putendl("usage: ls [-" FT_LS_SUPPORTED_FLAGS "] [file ...] ");
-	exit(1);
-}
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-
-	int flags;
 	int i;
 
-	i = 0;
-	if(ac == 1)
-	{
-		ft_ls(NULL, 0);
-	}
+	i = 1;
+	g_ftls_flags = 0;
+	if (ac == 1)
+		ft_ls(NULL);
 	else if (ac > 1)
 	{
-		flags = check_for_opt_flags(av);
+		set_opt_flags(av);
 		while (av[i] && av[i][0] == '-')
 			i++;
 		if (av[i] && av[i + 1])
-			flags |= FTLS_MULTIFILE;
-		ft_ls(&av[i], flags);
-		// check what arguments are
-		// if flags (pesence of '-' before anything else)
-		// if illegal flag, display usage
-		// then gather flag contents.
-		// branch depending on flags.
+			g_ftls_flags |= FTLS_MULTIFILE;
+		ft_ls(&av[i]);
 	}
 	return (0);
 }

@@ -12,12 +12,17 @@
 
 #include <ft_ls.h>
 
+/*
+** Simply skips a t_list pointer forward to skip over all the hidden files.
+** The linked list must be sorted.
+*/
+
 void	skip_hidden_files(t_list **files)
 {
 	t_list *tmp;
 
 	tmp = *files;
-	while (tmp && ft_strncmp(GET_LS_DNAME(tmp->content), ".", 1) == 0)
+	while (tmp && ft_strncmp(GET_LS_NAME(tmp->content), ".", 1) == 0)
 		tmp = tmp->next;
 	*files = tmp;
 }

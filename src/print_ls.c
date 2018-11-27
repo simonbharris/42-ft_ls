@@ -12,6 +12,10 @@
 
 #include <ft_ls.h>
 
+/*
+** Gets the block size for the linked listed files pointed ot by files.
+*/
+
 static int	get_block_size(t_list *files)
 {
 	int ct;
@@ -20,7 +24,7 @@ static int	get_block_size(t_list *files)
 	while (files)
 	{
 		if (!(g_ftls_flags & FTLS_A)
-			&& ft_strncmp(GET_LS_DNAME(files->content), ".", 1) == 0)
+			&& ft_strncmp(GET_LS_NAME(files->content), ".", 1) == 0)
 		{
 			skip_hidden_files(&files);
 			continue ;
@@ -34,6 +38,12 @@ static int	get_block_size(t_list *files)
 	return (ct);
 }
 
+/*
+** Handles the iteration through the files linked list to print
+** it's contents to the screen. Here it also checks the global flags
+** to see how it prints the files, and whether to print hidden files.
+*/
+
 void		print_ls(t_list *files, char *parent, int ls_flags)
 {
 	t_list *tmp;
@@ -44,7 +54,7 @@ void		print_ls(t_list *files, char *parent, int ls_flags)
 	while (tmp)
 	{
 		if (!(ls_flags & FTLS_A)
-			&& ft_strncmp(GET_LS_DNAME(tmp->content), ".", 1) == 0)
+			&& ft_strncmp(GET_LS_NAME(tmp->content), ".", 1) == 0)
 		{
 			skip_hidden_files(&tmp);
 			continue ;
@@ -52,7 +62,7 @@ void		print_ls(t_list *files, char *parent, int ls_flags)
 		else if (g_ftls_flags & FTLS_L)
 			ftls_put_longlist(tmp->content, parent);
 		else
-			printf("%s\n", ((t_lsfile *)tmp->content)->dirent->d_name);
+			printf("%s\n", GET_LS_NAME(tmp->content));
 		tmp = tmp->next;
 	}
 }

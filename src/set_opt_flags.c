@@ -22,6 +22,12 @@ static void		ftls_put_usage(void)
 	exit(1);
 }
 
+/*
+** Used as a pseduo dispatcher for returning a supported flag.
+** Returns the offset of a found flag in the cinputs array, and uses
+** that as an index into cvals.
+*/
+
 static int		get_opt_value(char c)
 {
 	const char	*cinputs = FT_LS_SUPPORTED_FLAGS;
@@ -29,6 +35,11 @@ static int		get_opt_value(char c)
 
 	return (cvals[ft_strchr(FT_LS_SUPPORTED_FLAGS, c) - cinputs]);
 }
+
+/*
+** Validates and sets the flag given by opt,
+** Upon invalid flag, program exits with usage.
+*/
 
 static int		get_opt_flags(char *opt)
 {
@@ -50,6 +61,10 @@ static int		get_opt_flags(char *opt)
 	}
 	return (f);
 }
+
+/*
+** initializes the global flag variable.
+*/
 
 void			set_opt_flags(char **argv)
 {

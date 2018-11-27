@@ -23,7 +23,7 @@
 
 static int	mrgsrt_ls_name(void *v1, void *v2)
 {
-	return (ft_strcmp((GET_LS_DNAME(v1)), (GET_LS_DNAME(v2))));
+	return (ft_strcmp((GET_LS_NAME(v1)), (GET_LS_NAME(v2))));
 }
 
 /*
@@ -32,16 +32,20 @@ static int	mrgsrt_ls_name(void *v1, void *v2)
 
 static int	mrgsrt_ls_time(void *v1, void *v2)
 {
-	if (GET_LS_TIMEMOD(v1).tv_sec == GET_LS_TIMEMOD(v2).tv_sec)
+	if (GET_LS_TMOD(v1).tv_sec == GET_LS_TMOD(v2).tv_sec)
 	{
-		if (GET_LS_TIMEMOD(v1).tv_nsec == GET_LS_TIMEMOD(v2).tv_nsec)
-			return (ft_strcmp(GET_LS_DNAME(v1), GET_LS_DNAME(v2)));
+		if (GET_LS_TMOD(v1).tv_nsec == GET_LS_TMOD(v2).tv_nsec)
+			return (ft_strcmp(GET_LS_NAME(v1), GET_LS_NAME(v2)));
 		else
-			return (GET_LS_TIMEMOD(v1).tv_nsec < GET_LS_TIMEMOD(v2).tv_nsec);
+			return (GET_LS_TMOD(v1).tv_nsec < GET_LS_TMOD(v2).tv_nsec ? 1 : -1);
 	}
 	else
-		return (GET_LS_TIMEMOD(v1).tv_sec < GET_LS_TIMEMOD(v2).tv_sec);
+		return (GET_LS_TMOD(v1).tv_sec < GET_LS_TMOD(v2).tv_sec ? 1 : -1);
 }
+
+/*
+** Delegates teh needed sort according to the global flags.
+*/
 
 t_list		*ft_ls_sort(t_list *head)
 {
