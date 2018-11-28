@@ -77,6 +77,5 @@ void			set_opt_flags(char **argv)
 	{
 		g_ftls_flags |= get_opt_flags(argv[i] + 1);
 		i++;
-		i++;
 	}
 }
