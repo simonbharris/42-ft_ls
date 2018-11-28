@@ -83,7 +83,7 @@ void			ftls_put_dir(char *file)
 			if ((hold = make_ls_lst(dent->d_name, file)))
 				ft_lstadd(&dirnames, hold);
 		dirnames = ft_ls_sort(dirnames);
-		print_ls(dirnames, file, g_ftls_flags);
+		print_ls(dirnames, file);
 		if (g_ftls_flags & FTLS_RR)
 			put_subdirs(dirnames, file);
 		closedir(dirs);

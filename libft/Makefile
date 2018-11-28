@@ -6,7 +6,7 @@
 #    By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/09 18:59:28 by sharris           #+#    #+#              #
-#    Updated: 2018/11/12 01:08:23 by sharris          ###   ########.fr        #
+#    Updated: 2018/11/27 08:31:11 by sharris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,26 +119,26 @@ ARFLAGS = rcs
 all: mkdir $(NAME) $(FT_PRINTF)
 
 $(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
 $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) -I$(INC_DIR) -o $@ $<
+	@$(CC) $(CFLAGS) -I$(INC_DIR) -o $@ $<
 
 mkdir: $(OBJ_DIR)
 	
 $(OBJ_DIR):
-	mkdir obj
+	@mkdir obj
 
 $(FT_PRINTF):
-	make -C $(FT_PF_DIR)
+	@make -C $(FT_PF_DIR)
 
 clean:
-	rm -Rf $(OBJ_DIR)
-	rm -Rf $(FT_PF_DIR)obj/
+	@rm -Rf $(OBJ_DIR)
+	@rm -Rf $(FT_PF_DIR)obj/
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(FT_PRINTF)
+	@rm -f $(NAME)
+	@rm -f $(FT_PRINTF)
 
 re: fclean all 
 

@@ -82,7 +82,7 @@ int				g_ftls_flags;
 
 void			ft_ls(char **argv);
 t_list			*ft_ls_sort(t_list *head);
-void			print_ls(t_list *files, char *parent, int ls_flags);
+void			print_ls(t_list *files, char *parent);
 void			set_opt_flags(char **argv);
 void			skip_hidden_files(t_list **files);
 void			print_basic_long_list(t_lsfile *file);

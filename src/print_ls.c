@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 18:41:23 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/25 18:41:24 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/27 16:17:37 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,37 @@ static int	get_block_size(t_list *files)
 	return (ct);
 }
 
+int has_visible_files(t_list *files)
+{
+	if (files && !(g_ftls_flags & FTLS_A))
+			skip_hidden_files(&files);
+	if (files)
+		return (1);
+	return (0);
+}
+
 /*
 ** Handles the iteration through the files linked list to print
 ** it's contents to the screen. Here it also checks the global flags
 ** to see how it prints the files, and whether to print hidden files.
 */
 
-void		print_ls(t_list *files, char *parent, int ls_flags)
+void		print_ls(t_list *files, char *parent)
 {
-	t_list *tmp;
-
-	if (g_ftls_flags & FTLS_L)
+	if (has_visible_files(files))
 		ft_printf("total %d\n", get_block_size(files));
-	tmp = files;
-	while (tmp)
+	while (files)
 	{
-		if (!(ls_flags & FTLS_A)
-			&& ft_strncmp(GET_LS_NAME(tmp->content), ".", 1) == 0)
+		if (!(g_ftls_flags & FTLS_A)
+			&& ft_strncmp(GET_LS_NAME(files->content), ".", 1) == 0)
 		{
-			skip_hidden_files(&tmp);
+			skip_hidden_files(&files);
 			continue ;
 		}
 		else if (g_ftls_flags & FTLS_L)
-			ftls_put_longlist(tmp->content, parent);
+			ftls_put_longlist(files->content, parent);
 		else
-			printf("%s\n", GET_LS_NAME(tmp->content));
-		tmp = tmp->next;
+			printf("%s\n", GET_LS_NAME(files->content));
+		files = files->next;
 	}
 }

@@ -6,7 +6,7 @@
 #    By: sharris <sharris@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/15 02:29:22 by sharris           #+#    #+#              #
-#    Updated: 2018/11/15 02:29:24 by sharris          ###   ########.fr        #
+#    Updated: 2018/11/27 08:40:37 by sharris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,25 +51,30 @@ debug: $(LIBFT) $(FT_PRINTF)
 	gcc -g $(INC_FLAGS) libft/src/*.c libft/src/ft_printf/src/* $(SRC) -o $(NAME)
 
 $(NAME): $(LIBFT) $(FT_PRINTF) $(OBJ_DIR) $(OBJ)
-	gcc $(INC_FLAGS) $(LIB_FLAGS) $(OBJ) -o $(NAME)
+	@gcc $(INC_FLAGS) $(LIB_FLAGS) $(OBJ) -o $(NAME)
+	@echo "Building ft_ls complete!"
 
 $(OBJ_DIR):
-	mkdir obj
+	@echo "Building ft_ls..."
+	@mkdir obj
 
 $(OBJ): $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(FTLS_HEADER)
-	gcc -c $(INC_FLAGS) $< -o $@
+	@gcc -c $(INC_FLAGS) $< -o $@
 
 $(LIBFT):
-	make -C libft/
-
+	@echo "Building libft and ft_printf..."
+	@make -C libft/
+	
 $(FT_PRINTF):
-	make -C libft/src/ft_printf/
+	@echo "building ft_printf..."
+	@make -C libft/src/ft_printf/
 
 clean:
-	rm -Rf obj/
+	@rm -Rf obj/
 
 fclean: clean
-	rm $(NAME)
-	make fclean -C libft/
+	@rm $(NAME)
+	@make fclean -C libft/
+	@make fclean -C libft/src/ft_printf
 
 re: clean all

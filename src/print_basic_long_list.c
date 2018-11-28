@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:24:21 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/26 18:24:21 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/27 16:51:12 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ftls_populate_time_values(struct stat st,
 	time(&timev);
 	ft_bzero(time2, 8);
 	ft_strcpy(time1, ctime(&(st.st_mtimespec.tv_sec)));
-	if (timev - 60 * 60 * 24 * 180 > st.st_mtimespec.tv_sec)
+	if (timev - 15726000 > st.st_mtimespec.tv_sec)
 		ft_strncpy(time2, time1 + 20, 4);
 	else
 		ft_strncpy(time2, time1 + 11, 5);
