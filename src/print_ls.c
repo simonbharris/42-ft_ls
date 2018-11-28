@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 18:41:23 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/27 16:17:37 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/27 17:10:52 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static int	get_block_size(t_list *files)
 	return (ct);
 }
 
-int has_visible_files(t_list *files)
+int			has_visible_files(t_list *files)
 {
 	if (files && !(g_ftls_flags & FTLS_A))
-			skip_hidden_files(&files);
+		skip_hidden_files(&files);
 	if (files)
 		return (1);
 	return (0);

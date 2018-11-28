@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 19:36:24 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/26 19:36:34 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/27 17:10:23 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void		put_subdirs(t_list *namelst, char *parent)
 
 	while (namelst)
 	{
-		if (!(g_ftls_flags & FTLS_A) && !ft_strncmp(GET_LS_NAME(namelst->content), ".", 1))
+		if (!(g_ftls_flags & FTLS_A) &&
+				!ft_strncmp(GET_LS_NAME(namelst->content), ".", 1))
 			skip_hidden_files(&namelst);
 		else
 		{
