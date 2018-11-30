@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 18:41:23 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/27 17:10:52 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/29 21:55:00 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		print_ls(t_list *files, char *parent)
 		else if (g_ftls_flags & FTLS_L)
 			ftls_put_longlist(files->content, parent);
 		else
-			printf("%s\n", GET_LS_NAME(files->content));
+		ft_printf("%s\n", GET_LS_NAME(files->content));
 		files = files->next;
 	}
 }
