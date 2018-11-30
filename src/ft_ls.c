@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 18:41:59 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/25 18:42:00 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/29 22:18:26 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static t_list	*get_explicit_files(char **av)
 		if ((hold = make_ls_lst(av[i++], "")))
 			ft_lstadd(&head, hold);
 		else
-			perror("ft_ls");
+		{
+			ft_printf("ft_ls: ");
+			perror(av[i - 1]);
+		}
 	}
 	return (head);
 }

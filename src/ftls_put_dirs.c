@@ -6,7 +6,7 @@
 /*   By: sharris <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 19:36:24 by sharris           #+#    #+#             */
-/*   Updated: 2018/11/27 17:10:23 by sharris          ###   ########.fr       */
+/*   Updated: 2018/11/29 22:17:25 by sharris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ static void		put_subdirs(t_list *namelst, char *parent)
 }
 
 /*
+** Prints "ft_ls: file: error"
+*/
+
+static void		print_lserror(char *file)
+{
+	ft_printf("ft_ls: ");
+	perror(file);
+}
+
+/*
 ** collects the files contained withing the directory, 'file'
 ** Sorts then passed the files to another function to print to the screen.
 */
@@ -77,7 +87,7 @@ void			ftls_put_dir(char *file)
 	if (g_ftls_flags & FTLS_MULTIFILE)
 		ft_printf("%s:\n", file);
 	if (!(dirs = opendir(file)))
-		perror("ft_ls");
+		print_lserror(file);
 	else
 	{
 		while ((dent = readdir(dirs)))
